@@ -43,7 +43,26 @@ int main() {
     cout << "bar" << bar+0.0 << endl; 
 
 
+    Fraction bar1{-8, 14};
+    Fraction bar2{4, -7};
+    Fraction bb = 1*bar1;
+    cout << "bar1 " << bar1 << endl; // -4/7
+    cout << "bar1 " << bb << endl; // -4/7
+    cout << "bar2 " << (bar1 == bar2) << endl; //
+
+
+    Fraction bar3{7,9};
+    Fraction bar4{1,2};
+    Fraction ans{7 ,18};
+    Fraction bb1 = (bar3 * 0.5);
+    cout << "bb1 " << bb1 << endl;
+    cout << "my test " << (bb1 == ans) << endl; 
+
     // add to test A
+    // (Fraction{6, 10} / Fraction{0, 10000}) 
+    // CHECK_EQ(1 * Fraction{-8, 14}, Fraction{4, -7});
+
+
     Fraction test1{14,21};
     Fraction test2{28,42};
     cout << "s  > h ? : " << (test1 == test2) << endl;

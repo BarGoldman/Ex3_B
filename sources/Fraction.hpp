@@ -16,6 +16,12 @@ private:
 public:
     // constructor
     Fraction(const int num_erator = 0 ,const int denominator = 1);
+    Fraction(float num);
+
+
+    // get & set 
+    int get_numerator();
+    int get_denominator();
 
     // All operators should work on both sides on fractions and floats type variables.
 

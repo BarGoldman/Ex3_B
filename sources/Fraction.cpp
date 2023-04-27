@@ -6,8 +6,6 @@ namespace ariel
 {
 };
 
-
-
 // constructor
 Fraction::Fraction(const int num_erator, const int denominator)
 {
@@ -20,6 +18,32 @@ Fraction::Fraction(const int num_erator, const int denominator)
     _denominator = denominator / ans;
 };
 
+Fraction::Fraction(float num)
+{
+    int numerator = num * 1000;
+    int denominator = 1000;
+    int ans = __gcd(numerator, denominator);
+    // cout << "with this _numerator 222222 " << this->_numerator << endl;
+    // cout << "with _denominator 222222 " << this->_denominator << endl;
+    this->_numerator = numerator / ans;
+    this->_denominator = denominator / ans;
+    // cout << "with this _numerator  44444 " << this->_numerator << endl;
+    // cout << "with _denominator 44444 " << this->_denominator << endl;
+    // int ans = __gcd(this->_numerator, this->_denominator);
+    // _numerator = num_erator / ans;
+    // _denominator = denominator / ans;
+};
+
+// get & set
+int Fraction::get_numerator()
+{
+    return this->_numerator;
+};
+int Fraction::get_denominator()
+{
+    return this->_denominator;
+}
+
 // The + operator to add two fractions and return their sum as another fraction in reduced form.
 Fraction Fraction::operator+(const Fraction &other) const
 {
@@ -31,20 +55,14 @@ Fraction Fraction::operator+(const Fraction &other) const
 // https://www.geeksforgeeks.org/stdgcd-c-inbuilt-function-finding-gcd/
 Fraction Fraction::operator+(const float num) const
 {
-    float temp = (float)this->_numerator / this->_denominator + num;
-    float f_number = temp * 1000;
-    int denominatorNem = 1000;
-    int numeratorNew = (int)f_number;
-    return Fraction(numeratorNew, denominatorNem);
+    Fraction ans(num);
+    return (*this + ans);
 }
 
 Fraction operator+(float num, const Fraction &other)
 {
-    float temp = (float)other._numerator / other._denominator + num;
-    float f_number = temp * 1000;
-    int denominatorNem = 1000;
-    int numeratorNew = (int)f_number;
-    return Fraction(numeratorNew, denominatorNem);
+    Fraction ans(num);
+    return (ans +  other);
 }
 
 // The - operator to subtract two fractions and return their difference as another fraction in reduced form.
@@ -57,20 +75,14 @@ Fraction Fraction::operator-(const Fraction &other) const
 
 Fraction Fraction::operator-(float num) const
 {
-    float temp = (float)this->_numerator / this->_denominator - num;
-    float f_number = temp * 1000;
-    int denominatorNem = 1000;
-    int numeratorNew = (int)f_number;
-    return Fraction(numeratorNew, denominatorNem);
+    Fraction ans(num);
+    return (*this - ans);
 }
 
 Fraction operator-(float num, const Fraction &other)
 {
-    float temp = num - (float)other._numerator / other._denominator;
-    float f_number = temp * 1000;
-    int denominatorNem = 1000;
-    int numeratorNew = (int)f_number;
-    return Fraction(numeratorNew, denominatorNem);
+    Fraction ans(num);
+    return (ans -  other);
 }
 
 // The * operator to multiply two fractions and return their product as another fraction in reduced form.
@@ -82,43 +94,61 @@ Fraction Fraction::operator*(const Fraction &other) const
 }
 Fraction Fraction::operator*(float num) const
 {
-   float temp = (float)this->_numerator / this->_denominator * num;
-    float f_number = temp * 1000;
-    int denominatorNem = 1000;
-    int numeratorNew = (int)f_number;
-    return Fraction(numeratorNew, denominatorNem);
+    // cout << "good  "<< endl;
+    // int temp = num * 1000;
+    // int denominatorNew = this->_denominator * 1000; // multiply denominator by 1000
+    // int numeratorNew = this->_numerator * 1000 + round(num * this->_denominator * 1000);
+    // return Fraction(numeratorNew, denominatorNew); // simplify fraction and return as a new Fraction object
+
+    Fraction ans(num);
+    return (*this * ans);
+    // float temp = (float)this->_numerator / this->_denominator * num;
+    // cout << "temp for me  " << temp << endl;
+    // float f_number = temp * 1000;
+    // int denominatorNem = 1000;
+    // int numeratorNew = (int)f_number;
+    // return Fraction(numeratorNew, denominatorNem);
 }
 Fraction operator*(float num, const Fraction &other)
 {
-    float temp = (float)other._numerator / other._denominator * num;
-    float f_number = temp * 1000;
-    int denominatorNem = 1000;
-    int numeratorNew = (int)f_number;
-    return Fraction(numeratorNew, denominatorNem);
+    Fraction ans(num);
+    return (ans * other);
+    // float temp = (float)other._numerator / other._denominator * num;
+    // cout << "temp " << temp << endl;
+    // float f_number = temp * 1000;
+    // int denominatorNem = 1000;
+    // int numeratorNew = (int)f_number;
+    // return Fraction(numeratorNew, denominatorNem);
 }
 
 // The / operator to divide two fractions and return their quotient as another fraction in reduced form.
 Fraction Fraction::operator/(const Fraction &other) const
 {
+    if (other._numerator == 0)
+    {
+        throw std::runtime_error("Divide by zero exception");
+    }
     int numeratorNew = _numerator * other._denominator;
     int denominatorNem = _denominator * other._numerator;
     return Fraction(numeratorNew, denominatorNem);
 }
 Fraction Fraction::operator/(float num) const
 {
-   float temp = (float)this->_numerator / this->_denominator / num;
-    float f_number = temp * 1000;
-    int denominatorNem = 1000;
-    int numeratorNew = (int)f_number;
-    return Fraction(numeratorNew, denominatorNem);
+    if (num == 0)
+    {
+        throw std::runtime_error("Divide by zero exception");
+    }
+    Fraction ans(num);
+    return (*this / ans);
 }
 Fraction operator/(float num, const Fraction &other)
 {
-    float temp = num / (float)(other._numerator / other._denominator);
-    float f_number = temp * 1000;
-    int denominatorNem = 1000;
-    int numeratorNew = (int)f_number;
-    return Fraction(numeratorNew, denominatorNem);
+    if (other._numerator == 0)
+    {
+        throw std::runtime_error("Divide by zero exception");
+    }
+    Fraction ans(num);
+    return (ans / other);
 }
 
 // The == operator to compare two fractions for equality and return true or false.
@@ -141,7 +171,7 @@ bool operator==(float num, const Fraction &other)
 //  >
 bool Fraction::operator>(const Fraction &other) const
 {
-    return ((float) _numerator / _denominator) > ((float) other._numerator / other._denominator);
+    return ((float)_numerator / _denominator) > ((float)other._numerator / other._denominator);
 }
 
 bool Fraction::operator>(float num) const
@@ -159,7 +189,7 @@ bool operator>(float num, const Fraction &other)
 // <
 bool Fraction::operator<(const Fraction &other) const
 {
-    return ((float) _numerator / _denominator) < ((float) other._numerator / other._denominator);
+    return ((float)_numerator / _denominator) < ((float)other._numerator / other._denominator);
 }
 
 bool Fraction::operator<(float num) const
@@ -177,8 +207,8 @@ bool operator<(float num, const Fraction &other)
 // >=
 bool Fraction::operator>=(const Fraction &other) const
 {
-    return (_numerator == other._numerator && _denominator == other._denominator || 
-    (((float) _numerator / _denominator) > ((float) other._numerator / other._denominator)));
+    return (_numerator == other._numerator && _denominator == other._denominator ||
+            (((float)_numerator / _denominator) > ((float)other._numerator / other._denominator)));
 }
 
 bool Fraction::operator>=(float num) const
@@ -196,8 +226,8 @@ bool operator>=(float num, const Fraction &other)
 // <=
 bool Fraction::operator<=(const Fraction &other) const
 {
-    return (_numerator == other._numerator && _denominator == other._denominator || 
-    (((float) _numerator / _denominator) < ((float) other._numerator / other._denominator)));
+    return (_numerator == other._numerator && _denominator == other._denominator ||
+            (((float)_numerator / _denominator) < ((float)other._numerator / other._denominator)));
 }
 
 bool Fraction::operator<=(float num) const
@@ -221,11 +251,12 @@ ostream &operator<<(ostream &output, const Fraction &other)
 // The >> operator to read a fraction from an input stream by taking two integers as input.
 istream &operator>>(istream &input, Fraction &other)
 {
-    int new_numerator = 0, new_denominator = 0;
+    int new_numerator = 0, new_denominator = 1;
     input >> new_numerator >> new_denominator;
     if (new_denominator == 0)
     {
         // handle division by zero error
+        throw std::runtime_error("Divide by zero exception");
         input.setstate(std::ios_base::failbit);
     }
 
