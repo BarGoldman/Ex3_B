@@ -9,7 +9,7 @@ namespace ariel
 
 
 // constructor
-Fraction::Fraction(const int num_erator = 0, const int denominator = 1)
+Fraction::Fraction(const int num_erator, const int denominator)
 {
     if (denominator == 0)
     {
