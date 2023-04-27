@@ -33,5 +33,20 @@ int main() {
     if (a > 1.1) cout << " a is bigger than 1.1" << endl;
     else cout << " a is smaller than 1.1" << endl;
 
+    
+    cout << "--------------------- bar -----------------" << endl;
+    Fraction s{-2, 5};
+    Fraction h{3, -5};
+    cout << "s  > h ? : " << (s > h) << endl; // true
+
+
+    // add to test A
+    Fraction test1{14,21};
+    Fraction test2{28,42};
+    cout << "s  > h ? : " << (test1 == test2) << endl;
+
+    Fraction test3{1,2};
+    cout << "s  > h ? : " << (test3 == test2) << endl;
+    cout << "--------------------- bar -----------------" << endl;
 
 }

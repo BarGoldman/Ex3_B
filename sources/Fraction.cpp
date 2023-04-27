@@ -141,7 +141,7 @@ bool operator==(float num, const Fraction &other)
 //  >
 bool Fraction::operator>(const Fraction &other) const
 {
-    return (_numerator * other._denominator > _denominator * other._numerator);
+    return ((float) _numerator / _denominator) > ((float) other._numerator / other._denominator);
 }
 
 bool Fraction::operator>(float num) const
@@ -159,7 +159,7 @@ bool operator>(float num, const Fraction &other)
 // <
 bool Fraction::operator<(const Fraction &other) const
 {
-    return (_numerator * other._denominator < _denominator * other._numerator);
+    return ((float) _numerator / _denominator) < ((float) other._numerator / other._denominator);
 }
 
 bool Fraction::operator<(float num) const
@@ -178,7 +178,7 @@ bool operator<(float num, const Fraction &other)
 bool Fraction::operator>=(const Fraction &other) const
 {
     return (_numerator == other._numerator && _denominator == other._denominator || 
-    _numerator >= other._numerator && _denominator >= other._denominator);
+    (((float) _numerator / _denominator) > ((float) other._numerator / other._denominator)));
 }
 
 bool Fraction::operator>=(float num) const
@@ -197,7 +197,7 @@ bool operator>=(float num, const Fraction &other)
 bool Fraction::operator<=(const Fraction &other) const
 {
     return (_numerator == other._numerator && _denominator == other._denominator || 
-    _numerator <= other._numerator && _denominator <= other._denominator);
+    (((float) _numerator / _denominator) < ((float) other._numerator / other._denominator)));
 }
 
 bool Fraction::operator<=(float num) const
