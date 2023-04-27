@@ -31,7 +31,7 @@ Fraction Fraction::operator+(const Fraction &other) const
 // https://www.geeksforgeeks.org/stdgcd-c-inbuilt-function-finding-gcd/
 Fraction Fraction::operator+(const float num) const
 {
-    float temp = this->_numerator / this->_denominator + num;
+    float temp = (float)this->_numerator / this->_denominator + num;
     float f_number = temp * 1000;
     int denominatorNem = 1000;
     int numeratorNew = (int)f_number;
@@ -57,7 +57,7 @@ Fraction Fraction::operator-(const Fraction &other) const
 
 Fraction Fraction::operator-(float num) const
 {
-    float temp = this->_numerator / this->_denominator - num;
+    float temp = (float)this->_numerator / this->_denominator - num;
     float f_number = temp * 1000;
     int denominatorNem = 1000;
     int numeratorNew = (int)f_number;
@@ -66,7 +66,7 @@ Fraction Fraction::operator-(float num) const
 
 Fraction operator-(float num, const Fraction &other)
 {
-    float temp = (float)other._numerator / other._denominator - num;
+    float temp = num - (float)other._numerator / other._denominator;
     float f_number = temp * 1000;
     int denominatorNem = 1000;
     int numeratorNew = (int)f_number;
@@ -82,7 +82,7 @@ Fraction Fraction::operator*(const Fraction &other) const
 }
 Fraction Fraction::operator*(float num) const
 {
-   float temp = this->_numerator / this->_denominator * num;
+   float temp = (float)this->_numerator / this->_denominator * num;
     float f_number = temp * 1000;
     int denominatorNem = 1000;
     int numeratorNew = (int)f_number;
@@ -106,7 +106,7 @@ Fraction Fraction::operator/(const Fraction &other) const
 }
 Fraction Fraction::operator/(float num) const
 {
-   float temp = this->_numerator / this->_denominator / num;
+   float temp = (float)this->_numerator / this->_denominator / num;
     float f_number = temp * 1000;
     int denominatorNem = 1000;
     int numeratorNew = (int)f_number;
@@ -114,7 +114,7 @@ Fraction Fraction::operator/(float num) const
 }
 Fraction operator/(float num, const Fraction &other)
 {
-    float temp = (other._numerator / other._denominator) / num;
+    float temp = num / (float)(other._numerator / other._denominator);
     float f_number = temp * 1000;
     int denominatorNem = 1000;
     int numeratorNew = (int)f_number;

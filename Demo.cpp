@@ -39,6 +39,9 @@ int main() {
     Fraction h{3, -5};
     cout << "s  > h ? : " << (s > h) << endl; // true
 
+    Fraction bar{2,5};
+    cout << "bar" << bar+0.0 << endl; 
+
 
     // add to test A
     Fraction test1{14,21};
