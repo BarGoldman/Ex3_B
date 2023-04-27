@@ -6,6 +6,13 @@ namespace ariel
 {
 };
 
+int gcd(int num1 , int num2){
+    if(num2 == 0){
+        return num1;
+    }
+    return gcd(num2 , num1 % num2);
+}
+
 // constructor
 Fraction::Fraction(const int num_erator, const int denominator)
 {
@@ -13,20 +20,25 @@ Fraction::Fraction(const int num_erator, const int denominator)
     {
         throw std::invalid_argument("Divide by zero exception");
     }
-    int ans = __gcd(num_erator, denominator);
+    int ans = gcd(num_erator, denominator);
+    // cout << "with this _numerator 222222 " << num_erator << endl;
+    // cout << "with _denominator 222222 " << denominator << endl;
+    // cout << "ans " << ans << endl;
     _numerator = num_erator / ans;
     _denominator = denominator / ans;
+    // cout << "with this _numerator 222222 " << this->_numerator << endl;
+    // cout << "with _denominator 222222 " << this->_denominator << endl;
 };
 
 Fraction::Fraction(float num)
 {
     int numerator = num * 1000;
     int denominator = 1000;
-    int ans = __gcd(numerator, denominator);
+    int ans = gcd(numerator, denominator);
     // cout << "with this _numerator 222222 " << this->_numerator << endl;
     // cout << "with _denominator 222222 " << this->_denominator << endl;
-    this->_numerator = numerator / ans;
-    this->_denominator = denominator / ans;
+    _numerator = numerator / ans;
+    _denominator = denominator / ans;
     // cout << "with this _numerator  44444 " << this->_numerator << endl;
     // cout << "with _denominator 44444 " << this->_denominator << endl;
     // int ans = __gcd(this->_numerator, this->_denominator);

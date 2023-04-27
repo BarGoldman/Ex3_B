@@ -35,40 +35,50 @@ int main() {
 
     
     cout << "--------------------- bar -----------------" << endl;
-    Fraction s{-2, 5};
-    Fraction h{3, -5};
-    cout << "s  > h ? : " << (s > h) << endl; // true
 
-    Fraction bar{2,5};
-    cout << "bar" << bar+0.0 << endl; 
+    std::stringstream ss;
+        Fraction neg_frac{-7, 9};
+        ss << neg_frac;
+        cout << "ss " << ss.str() << endl;
+        cout << "neg_frac:  " << neg_frac << endl;
 
-
-    Fraction bar1{-8, 14};
-    Fraction bar2{4, -7};
-    Fraction bb = 1*bar1;
-    cout << "bar1 " << bar1 << endl; // -4/7
-    cout << "bar1 " << bb << endl; // -4/7
-    cout << "bar2 " << (bar1 == bar2) << endl; //
+    // //CHECK_EQ(Fraction{1, 3} + 4.321, 4.654);
 
 
-    Fraction bar3{7,9};
-    Fraction bar4{1,2};
-    Fraction ans{7 ,18};
-    Fraction bb1 = (bar3 * 0.5);
-    cout << "bb1 " << bb1 << endl;
-    cout << "my test " << (bb1 == ans) << endl; 
+    // Fraction s{-2, 5};
+    // Fraction h{3, -5};
+    // cout << "s  > h ? : " << (s > h) << endl; // true
 
-    // add to test A
-    // (Fraction{6, 10} / Fraction{0, 10000}) 
-    // CHECK_EQ(1 * Fraction{-8, 14}, Fraction{4, -7});
+    // Fraction bar{2,5};
+    // cout << "bar" << bar+0.0 << endl; 
 
 
-    Fraction test1{14,21};
-    Fraction test2{28,42};
-    cout << "s  > h ? : " << (test1 == test2) << endl;
+    // Fraction bar1{-8, 14};
+    // Fraction bar2{4, -7};
+    // Fraction bb = 1*bar1;
+    // cout << "bar1 " << bar1 << endl; // -4/7
+    // cout << "bar1 " << bb << endl; // -4/7
+    // cout << "bar2 " << (bar1 == bar2) << endl; //
 
-    Fraction test3{1,2};
-    cout << "s  > h ? : " << (test3 == test2) << endl;
+
+    // Fraction bar3{7,9};
+    // Fraction bar4{1,2};
+    // Fraction ans{7 ,18};
+    // Fraction bb1 = (bar3 * 0.5);
+    // cout << "bb1 " << bb1 << endl;
+    // cout << "my test " << (bb1 == ans) << endl; 
+
+    // // add to test A
+    // // (Fraction{6, 10} / Fraction{0, 10000}) 
+    // // CHECK_EQ(1 * Fraction{-8, 14}, Fraction{4, -7});
+
+
+    // Fraction test1{14,21};
+    // Fraction test2{28,42};
+    // cout << "s  > h ? : " << (test1 == test2) << endl;
+
+    // Fraction test3{1,2};
+    // cout << "s  > h ? : " << (test3 == test2) << endl;
     cout << "--------------------- bar -----------------" << endl;
 
 }
