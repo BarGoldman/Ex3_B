@@ -15,7 +15,7 @@ private:
 
 public:
     // constructor
-    Fraction(const int num_erator ,const int denominator);
+    Fraction(const int num_erator = 0 ,const int denominator = 1);
 
     // All operators should work on both sides on fractions and floats type variables.
 
