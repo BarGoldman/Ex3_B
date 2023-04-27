@@ -6,11 +6,13 @@ namespace ariel
 {
 };
 
-int gcd(int num1 , int num2){
-    if(num2 == 0){
+int gcd(int num1, int num2)
+{
+    if (num2 == 0)
+    {
         return num1;
     }
-    return gcd(num2 , num1 % num2);
+    return gcd(num2, num1 % num2);
 }
 
 // constructor
@@ -21,9 +23,23 @@ Fraction::Fraction(const int num_erator, const int denominator)
         throw std::invalid_argument("Divide by zero exception");
     }
     int ans = gcd(num_erator, denominator);
+    cout << "ans " << ans << endl;
+
+    if (mehane < 0)
+        do:
+ mone *= -1
+ mehane *= -1
+
+    if(denominator < 0 )
+            {
+                _numerator = (-1) * num_erator / ans;
+            }
+    if (ans < 0 && denominator > 0 && num_erator < 0)
+    {
+        ans = ans * (-1);
+    }
     // cout << "with this _numerator 222222 " << num_erator << endl;
     // cout << "with _denominator 222222 " << denominator << endl;
-    // cout << "ans " << ans << endl;
     _numerator = num_erator / ans;
     _denominator = denominator / ans;
     // cout << "with this _numerator 222222 " << this->_numerator << endl;
@@ -35,6 +51,9 @@ Fraction::Fraction(float num)
     int numerator = num * 1000;
     int denominator = 1000;
     int ans = gcd(numerator, denominator);
+    // if ( ans < 0 && denominator > 0 && numerator < 0){
+    //     ans = ans * (-1);
+    // }
     // cout << "with this _numerator 222222 " << this->_numerator << endl;
     // cout << "with _denominator 222222 " << this->_denominator << endl;
     _numerator = numerator / ans;
@@ -74,7 +93,7 @@ Fraction Fraction::operator+(const float num) const
 Fraction operator+(float num, const Fraction &other)
 {
     Fraction ans(num);
-    return (ans +  other);
+    return (ans + other);
 }
 
 // The - operator to subtract two fractions and return their difference as another fraction in reduced form.
@@ -94,7 +113,7 @@ Fraction Fraction::operator-(float num) const
 Fraction operator-(float num, const Fraction &other)
 {
     Fraction ans(num);
-    return (ans -  other);
+    return (ans - other);
 }
 
 // The * operator to multiply two fractions and return their product as another fraction in reduced form.

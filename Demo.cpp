@@ -35,8 +35,14 @@ int main() {
 
     
     cout << "--------------------- bar -----------------" << endl;
+        std::stringstream ss;
+    Fraction frac2{30, -60};
+    Fraction bare{-1, 2};
+            ss << bare;
+        cout << "ss " << ss.str() << endl;
+        cout << "bare:  " << bare << endl;
+    cout << "c >=b ? : " << (frac2 == bare) << endl;
 
-    std::stringstream ss;
         Fraction neg_frac{-7, 9};
         ss << neg_frac;
         cout << "ss " << ss.str() << endl;
