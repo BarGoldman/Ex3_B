@@ -9,7 +9,7 @@ using namespace ariel;
 using namespace std;
 
 
-/*
+
 TEST_CASE("Fraction object initialization & Getters return expected values") {
     Fraction a(1, 2);
 
@@ -254,4 +254,3 @@ TEST_CASE("Rounding of float numbers during arithmetic operations with Fractions
     CHECK(((c.getNumerator() == 2) && (c.getDenominator() == 1)));
 }
 
-*/
