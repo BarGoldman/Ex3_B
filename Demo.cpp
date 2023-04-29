@@ -36,8 +36,9 @@ int main()
         cout << " a is smaller than 1.1" << endl;
 
     cout << "--------------------- bar -----------------" << endl;
-    // Fraction bar(28,48);
-    // Fraction aa {7 ,12};
+    Fraction bar{12345, 23456};
+    Fraction aa {34567, 45678};
+    cout << "aa * bb " << ( bar * aa ) << endl;
 
     // cout << "aa + bb " << ( bar == aa ) << endl;
     // Fraction aa {5, -7};

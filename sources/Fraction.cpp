@@ -17,30 +17,18 @@ int gcd(int num1, int num2)
     return gcd(num2, num1 % num2);
 }
 
-// constructor
-Fraction::Fraction()
-{
-    _numerator = 0;
-    _denominator = 1;
-}
-
-Fraction::Fraction(const int &num_erator, const int &denominator)
-{
-    if (denominator == 0)
-    {
-        throw std::invalid_argument("Divide by zero exception");
-    }
-    int ans = gcd(num_erator, denominator);
-    _numerator = num_erator / ans;
-    _denominator = denominator / ans;
-
+void Fraction::helper(int &flag){
+    int ans = gcd(_numerator , _denominator);
+    _numerator = _numerator / ans;
+    _denominator = _denominator / ans;
+    
     // if the "-" is on the _denominator over to the _numerator
     if (_denominator < 0)
     {
         _numerator = _numerator * (-1);
         _denominator = _denominator * (-1);
     }
-    if (_denominator > 1000 && denominator > 1000)
+    if (_denominator > 1000 && flag == 1)
     {
         int temp_d = _denominator / 1000;
         int temp_n = _numerator / temp_d;
@@ -54,8 +42,8 @@ Fraction::Fraction(const int &num_erator, const int &denominator)
         _numerator = temp_n / ans;
         _denominator = temp_d / ans;
 
-        cout << "_numerator " << _numerator << endl;
-        cout << "_denominator " << _denominator << endl;
+        // cout << "_numerator " << _numerator << endl;
+        // cout << "_denominator " << _denominator << endl;
 
         // if the "-" is on the _denominator over to the _numerator
         if (_denominator < 0)
@@ -64,6 +52,29 @@ Fraction::Fraction(const int &num_erator, const int &denominator)
             _denominator = _denominator * (-1);
         }
     }
+}
+
+
+// constructor
+Fraction::Fraction()
+{
+    _numerator = 0;
+    _denominator = 1;
+}
+
+Fraction::Fraction(const int &num_erator, const int &denominator):_numerator(num_erator),_denominator(denominator)
+{
+    if (denominator == 0)
+    {
+        throw std::invalid_argument("Divide by zero exception");
+    }
+    int flag = 0;
+
+    if(denominator > 1000){
+        flag = 1;
+    }
+
+    helper(flag);
 };
 
 Fraction::Fraction(const float &num)
@@ -157,13 +168,19 @@ Fraction operator-(const float &num, const Fraction &other)
 // The * operator to multiply two fractions and return their product as another fraction in reduced form.
 Fraction Fraction::operator*(const Fraction &other) const
 {
-    long long numeratorNew = (long long)_numerator * (long long)other._numerator;
-    long long denominatorNem = (long long)_denominator * (long long)other._denominator;
-    if (numeratorNew / denominatorNem > INT_MAX || numeratorNew / denominatorNem < INT_MIN)
-    {
-        throw std::overflow_error("Multiplication overflow");
-    }
-    return Fraction((int)numeratorNew, (int)denominatorNem);
+    // long long numeratorNew = (long long)_numerator * (long long)other._numerator;
+    // long long denominatorNem = (long long)_denominator * (long long)other._denominator;
+
+    int numeratorNew = _numerator * other._numerator;
+    int denominatorNew = _denominator * other._denominator;
+    // if (numeratorNew / denominatorNem > INT_MAX || numeratorNew / denominatorNem < INT_MIN)
+    // {
+    //     throw std::overflow_error("Multiplication overflow");
+    // }
+    cout << "numeratorNew " << numeratorNew  << endl;
+    cout << "denominatorNew " << denominatorNew  << endl;
+
+    return Fraction((int)numeratorNew, denominatorNew);
 }
 
 Fraction Fraction::operator*(const float &num) const
