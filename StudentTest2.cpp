@@ -706,6 +706,10 @@ TEST_SUITE("Input and output operators tests") {
 
         Fraction frac;
         CHECK_THROWS_AS(ss_floating_point >> frac, std::runtime_error);
+
+        std::stringstream bad_is("7");
+        Fraction b;
+        CHECK_THROWS(bad_is >> b); // Throws cuz the input is one number
     }
 }
 

@@ -20,7 +20,7 @@ Fraction::Fraction(const int num_erator, const int denominator)
 {
     if (denominator == 0)
     {
-        // throw std::invalid_argument("Divide by zero exception");
+        throw std::invalid_argument("Divide by zero exception");
         throw std::runtime_error("Divide by zero exception");
     }
     if(num_erator > std::numeric_limits<int>::max() || denominator > std::numeric_limits<int>::max()
@@ -42,9 +42,12 @@ Fraction::Fraction(const int num_erator, const int denominator)
 
 Fraction::Fraction(float num)
 {
-    if(num > std::numeric_limits<float>::max() || num < std::numeric_limits<float>::min()){
-        throw std::overflow_error("Multiplication overflow");
-    }
+    // if(num > std::numeric_limits<float>::max() || num < std::numeric_limits<float>::min()){
+    //     cout << "num: " << num << endl;
+    //     cout << "num: " << std::numeric_limits<float>::min() << endl;
+    //     cout << "num: " << std::numeric_limits<float>::max() << endl;
+    //     throw std::overflow_error("barrrrrr Multiplication overflow");
+    // }
     // cout << "hii1" << endl;
     //  cout << " num " << num << endl;
     int numerator = num * 1000;
@@ -320,13 +323,14 @@ ostream &operator<<(ostream &output, const Fraction &other)
 istream &operator>>(istream &input, Fraction &other)
 {
     int new_numerator, new_denominator;
-    if (input >> new_numerator >> new_denominator)
-    {
-        other = Fraction(new_numerator, new_denominator);
+    input >> new_numerator;
+    if(!(input >> new_denominator)){
+        cout << "new "<< new_denominator << endl;
+        throw std::invalid_argument("the input is one number");
     }
-    else{
-        // throw std::invalid_argument("the input is one number");
+    if(new_denominator == 0){
         throw std::runtime_error("Divide by zero exception");
     }
+    other = Fraction(new_numerator, new_denominator);
     return input;
 }
