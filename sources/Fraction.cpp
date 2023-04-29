@@ -168,19 +168,9 @@ Fraction operator-(const float &num, const Fraction &other)
 // The * operator to multiply two fractions and return their product as another fraction in reduced form.
 Fraction Fraction::operator*(const Fraction &other) const
 {
-    // long long numeratorNew = (long long)_numerator * (long long)other._numerator;
-    // long long denominatorNem = (long long)_denominator * (long long)other._denominator;
-
     int numeratorNew = _numerator * other._numerator;
     int denominatorNew = _denominator * other._denominator;
-    // if (numeratorNew / denominatorNem > INT_MAX || numeratorNew / denominatorNem < INT_MIN)
-    // {
-    //     throw std::overflow_error("Multiplication overflow");
-    // }
-    cout << "numeratorNew " << numeratorNew  << endl;
-    cout << "denominatorNew " << denominatorNew  << endl;
-
-    return Fraction((int)numeratorNew, denominatorNew);
+    return Fraction(numeratorNew, denominatorNew);
 }
 
 Fraction Fraction::operator*(const float &num) const
