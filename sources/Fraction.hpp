@@ -35,6 +35,7 @@ public:
     Fraction operator-(const Fraction& other) const;
     Fraction operator-(float num) const; 
     friend Fraction operator-(float num, const Fraction& other);
+    // friend Fraction operator-(double num, const Fraction& other);
 
     // The * operator to multiply two fractions and return their product as another fraction in reduced form.
     Fraction operator*(const Fraction& other) const; // a * b

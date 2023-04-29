@@ -36,18 +36,30 @@ int main()
         cout << " a is smaller than 1.1" << endl;
 
     cout << "--------------------- bar -----------------" << endl;
-    Fraction d(4, 5);
-    float e = 0.4;
-    Fraction f = d / e; // 4/5 / 2/5 = 4/5 * 5/2 = 20 / 10 = 2/1
-    cout << "f.getNumerator() == 2)  " << (f.getNumerator() == 2) << endl; // 4.654
-    cout << "(f.getDenominator() == 1)  " << (f.getDenominator() == 1) << endl; // 4.654
+    // Fraction aaa(2, 5);
+    // Fraction h = 0.2001 - aaa;
+    // cout << "h " << (h) << endl;
+    // cout << "f.getNumerator() == 2)  " << (h.getNumerator() == -1) << endl;     // 4.654
+    // cout << "(f.getDenominator() == 1)  " << (h.getDenominator() == 5) << endl; // 4.654
 
-    Fraction aa(1,3);
+    Fraction aaa(2, 3);
+    Fraction h = 5.321 - aaa;
+    cout << "h " << (h) << endl;
+    cout << "f.getNumerator() == 2)  " << (h.getNumerator() == 2327) << endl;     // 4.654
+    cout << "(f.getDenominator() == 1)  " << (h.getDenominator() == 500) << endl; // 4.654
+
+    Fraction d(2,5);
+    float e = 0.2001; // 1/5
+    Fraction f = e - d; // 4/5 / 2/5 = 4/5 * 5/2 = 20 / 10 = 2/1
+    cout << "f " << (f) << endl;
+    cout << "f.getNumerator() == 2)  " << (f.getNumerator() == -1) << endl;     // 4.654
+    cout << "(f.getDenominator() == 1)  " << (f.getDenominator() == 5) << endl; // 4.654
+
+    Fraction aa(1, 3);
     cout << "aa:  " << (aa + 4.321) << endl; // 4.654
 
     // Fraction neg_frac1{-2, 7};
     // cout << "neg_frac:  " << neg_frac1++ << endl;
-
 
     // std::stringstream ss;
     // Fraction frac2{30, -60};
