@@ -40,9 +40,33 @@ Fraction::Fraction(const int &num_erator, const int &denominator)
         _numerator = _numerator * (-1);
         _denominator = _denominator * (-1);
     }
+    if (_denominator > 1000 && denominator > 1000)
+    {
+        int temp_d = _denominator / 1000;
+        int temp_n = _numerator / temp_d;
+
+        // cout << "_numerator1 " << _numerator << endl;
+        // cout << "_denominator1 " << _denominator<< endl;
+        temp_d = 1000;
+        // cout << "_denominator1 " << _denominator<< endl;
+        int ans = gcd(temp_n, temp_d);
+        // cout << " ans " << ans << endl;
+        _numerator = temp_n / ans;
+        _denominator = temp_d / ans;
+
+        cout << "_numerator " << _numerator << endl;
+        cout << "_denominator " << _denominator << endl;
+
+        // if the "-" is on the _denominator over to the _numerator
+        if (_denominator < 0)
+        {
+            _numerator = _numerator * (-1);
+            _denominator = _denominator * (-1);
+        }
+    }
 };
 
-Fraction::Fraction(const float& num)
+Fraction::Fraction(const float &num)
 {
     int numerator = num * 1000;
     int denominator = 1000;
@@ -139,8 +163,6 @@ Fraction Fraction::operator*(const Fraction &other) const
     {
         throw std::overflow_error("Multiplication overflow");
     }
-    // cout << "numeratorNew/denominatorNem  "<< numeratorNew/denominatorNem<< endl;
-    // cout << "numeratorNew  "<< numeratorNew<< endl;
     return Fraction((int)numeratorNew, (int)denominatorNem);
 }
 

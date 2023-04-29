@@ -36,11 +36,15 @@ int main()
         cout << " a is smaller than 1.1" << endl;
 
     cout << "--------------------- bar -----------------" << endl;
-    Fraction aa {5, -7};
-    Fraction bb{3, -14};
-    Fraction cc{13, -14};
-    Fraction h = aa + bb ;
-    cout << "aa + bb " << ( h == cc ) << endl;
+    // Fraction bar(28,48);
+    // Fraction aa {7 ,12};
+
+    // cout << "aa + bb " << ( bar == aa ) << endl;
+    // Fraction aa {5, -7};
+    // Fraction bb{3, -14};
+    // Fraction cc{13, -14};
+    // Fraction h = aa + bb ;
+    // cout << "aa + bb " << ( h == cc ) << endl;
 
 
     // Fraction aaa(2, 5);
@@ -49,11 +53,11 @@ int main()
     // cout << "f.getNumerator() == 2)  " << (h.getNumerator() == -1) << endl;     // 4.654
     // cout << "(f.getDenominator() == 1)  " << (h.getDenominator() == 5) << endl; // 4.654
 
-    // Fraction aaa(2, 3);
-    // Fraction h = 5.321 - aaa;
-    // cout << "h " << (h) << endl;
-    // cout << "f.getNumerator() == 2)  " << (h.getNumerator() == 2327) << endl;     // 4.654
-    // cout << "(f.getDenominator() == 1)  " << (h.getDenominator() == 500) << endl; // 4.654
+    Fraction aaa(2, 3);
+    Fraction h = 5.321 - aaa;
+    cout << "h " << (h) << endl;
+    cout << "f.getNumerator() == 2)  " << (h.getNumerator() == 2327) << endl;     // 4.654
+    cout << "(f.getDenominator() == 1)  " << (h.getDenominator() == 500) << endl; // 4.654
 
     // Fraction d(1, 5);
     // float e = 0.4; // Will be converted to 2/5
