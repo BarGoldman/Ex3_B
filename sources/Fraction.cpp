@@ -28,6 +28,8 @@ void Fraction::helper(int &flag){
         _numerator = _numerator * (-1);
         _denominator = _denominator * (-1);
     }
+    //From this part of the assignment I handle cases where the denominator is greater than 1000
+    //, for the purpose of writing the solution I consulted the main group on how to solve the problem.
     if (_denominator > 1000 && flag == 1)
     {
         int temp_d = _denominator / 1000;
@@ -69,11 +71,9 @@ Fraction::Fraction(const int &num_erator, const int &denominator):_numerator(num
         throw std::invalid_argument("Divide by zero exception");
     }
     int flag = 0;
-
     if(denominator > 1000){
         flag = 1;
     }
-
     helper(flag);
 };
 
