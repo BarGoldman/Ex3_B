@@ -18,28 +18,23 @@ int gcd(int num1, int num2)
 }
 
 // constructor
-Fraction::Fraction(){
+Fraction::Fraction()
+{
     _numerator = 0;
     _denominator = 1;
 }
 
-Fraction::Fraction(const int& num_erator,const int& denominator)
+Fraction::Fraction(const int &num_erator, const int &denominator)
 {
     if (denominator == 0)
     {
         throw std::invalid_argument("Divide by zero exception");
     }
-    // if(num_erator > std::numeric_limits<int>::max() || denominator > std::numeric_limits<int>::max()
-    // || num_erator < std::numeric_limits<int>::min() || denominator < std::numeric_limits<int>::min() ){
-    //     throw std::overflow_error("Multiplication overflow");
-    // }
-    int ans = gcd(abs(num_erator), abs(denominator));
-    // if((denominator < 0 && num_erator > 0) || (num_erator < 0 && denominator > 0) && ans < 0){
-    //     ans = ans * (-1);
-    // }
-    // cout << " ans "<< ans << endl;
+    int ans = gcd(num_erator, denominator);
     _numerator = num_erator / ans;
     _denominator = denominator / ans;
+
+    // if the "-" is on the _denominator over to the _numerator
     if (_denominator < 0)
     {
         _numerator = _numerator * (-1);
@@ -47,41 +42,37 @@ Fraction::Fraction(const int& num_erator,const int& denominator)
     }
 };
 
-Fraction::Fraction(float num)
+Fraction::Fraction(const float& num)
 {
     int numerator = num * 1000;
     int denominator = 1000;
-    int ans = gcd(abs(numerator), abs(denominator));
-    // cout << " ans " << ans << endl;
-    if (ans < 0)
-    {
-        ans = ans * (-1);
-    }
+    int ans = gcd(numerator, denominator);
     _numerator = numerator / ans;
     _denominator = denominator / ans;
+
+    // if the "-" is on the _denominator over to the _numerator
     if (_denominator < 0)
     {
         _numerator = _numerator * (-1);
         _denominator = _denominator * (-1);
     }
-    // cout << " _numerator " << _numerator << endl;
-    // cout << " _denominator " << _denominator  << endl;
 };
-
 
 // constructor for the test
 Fraction::Fraction(double num)
 {
-    cout << "hii" << endl;
     int numerator = num * 1000;
     int denominator = 1000;
     int ans = gcd(numerator, denominator);
-    if (ans < 0)
-    {
-        ans = ans * (-1);
-    }
     _numerator = numerator / ans;
     _denominator = denominator / ans;
+
+    // if the "-" is on the _denominator over to the _numerator
+    if (_denominator < 0)
+    {
+        _numerator = _numerator * (-1);
+        _denominator = _denominator * (-1);
+    }
 };
 
 // get & set
@@ -105,13 +96,13 @@ Fraction Fraction::operator+(const Fraction &other) const
     return Fraction(numeratorNew, denominatorNew);
 }
 
-Fraction Fraction::operator+(const float& num) const
+Fraction Fraction::operator+(const float &num) const
 {
     Fraction temp(num);
     return *this + temp;
 }
 
-Fraction operator+(const float& num, const Fraction &other)
+Fraction operator+(const float &num, const Fraction &other)
 {
     Fraction temp(num);
     return temp + other;
@@ -126,13 +117,13 @@ Fraction Fraction::operator-(const Fraction &other) const
     return Fraction(numeratorNew, denominatorNew);
 }
 
-Fraction Fraction::operator-(const float& num) const
+Fraction Fraction::operator-(const float &num) const
 {
     Fraction temp(num);
     return *this - temp;
 }
 
-Fraction operator-(const float& num, const Fraction &other)
+Fraction operator-(const float &num, const Fraction &other)
 {
     Fraction temp(num);
     return temp - other;
@@ -153,13 +144,13 @@ Fraction Fraction::operator*(const Fraction &other) const
     return Fraction((int)numeratorNew, (int)denominatorNem);
 }
 
-Fraction Fraction::operator*(const float& num) const
+Fraction Fraction::operator*(const float &num) const
 {
     Fraction temp(num);
     return *this * temp;
 }
 
-Fraction operator*(const float& num, const Fraction &other)
+Fraction operator*(const float &num, const Fraction &other)
 {
     Fraction temp(num);
     return temp * other;
@@ -177,7 +168,7 @@ Fraction Fraction::operator/(const Fraction &other) const
     int denominatorNem = _denominator * other._numerator;
     return Fraction(numeratorNew, denominatorNem);
 }
-Fraction Fraction::operator/(const float& num) const
+Fraction Fraction::operator/(const float &num) const
 {
     if (num == 0)
     {
@@ -186,7 +177,7 @@ Fraction Fraction::operator/(const float& num) const
     Fraction temp(num);
     return *this / temp;
 }
-Fraction operator/(const float& num, const Fraction &other)
+Fraction operator/(const float &num, const Fraction &other)
 {
     if (other._numerator == 0)
     {
@@ -201,12 +192,12 @@ bool Fraction::operator==(const Fraction &other) const
 {
     return (_numerator == other._numerator && _denominator == other._denominator);
 }
-bool Fraction::operator==(const float& num) const
+bool Fraction::operator==(const float &num) const
 {
     float temp = (float)this->_numerator / this->_denominator;
     return (temp == num);
 }
-bool operator==(const float& num, const Fraction &other)
+bool operator==(const float &num, const Fraction &other)
 {
     float temp = (float)other._numerator / other._denominator;
     return (temp == num);
@@ -219,13 +210,13 @@ bool Fraction::operator>(const Fraction &other) const
     return ((float)_numerator / _denominator) > ((float)other._numerator / other._denominator);
 }
 
-bool Fraction::operator>(const float& num) const
+bool Fraction::operator>(const float &num) const
 {
     float temp = (float)this->_numerator / this->_denominator;
     return (temp > num);
 }
 
-bool operator>(const float& num, const Fraction &other)
+bool operator>(const float &num, const Fraction &other)
 {
     float temp = (float)other._numerator / other._denominator;
     return (num > temp);
@@ -237,13 +228,13 @@ bool Fraction::operator<(const Fraction &other) const
     return ((float)_numerator / _denominator) < ((float)other._numerator / other._denominator);
 }
 
-bool Fraction::operator<(const float& num) const
+bool Fraction::operator<(const float &num) const
 {
     float temp = (float)this->_numerator / this->_denominator;
     return (temp < num);
 }
 
-bool operator<(const float& num, const Fraction &other)
+bool operator<(const float &num, const Fraction &other)
 {
     float temp = (float)other._numerator / other._denominator;
     return (num < temp);
@@ -256,13 +247,13 @@ bool Fraction::operator>=(const Fraction &other) const
             (((float)_numerator / _denominator) > ((float)other._numerator / other._denominator)));
 }
 
-bool Fraction::operator>=(const float& num) const
+bool Fraction::operator>=(const float &num) const
 {
     float temp = (float)this->_numerator / this->_denominator;
     return (temp >= num);
 }
 
-bool operator>=(const float& num, const Fraction &other)
+bool operator>=(const float &num, const Fraction &other)
 {
     float temp = (float)other._numerator / other._denominator;
     return (num >= temp);
@@ -275,13 +266,13 @@ bool Fraction::operator<=(const Fraction &other) const
             (((float)_numerator / _denominator) < ((float)other._numerator / other._denominator)));
 }
 
-bool Fraction::operator<=(const float& num) const
+bool Fraction::operator<=(const float &num) const
 {
     float temp = (float)this->_numerator / this->_denominator;
     return (temp <= num);
 }
 
-bool operator<=(const float& num, const Fraction &other)
+bool operator<=(const float &num, const Fraction &other)
 {
     float temp = (float)other._numerator / other._denominator;
     return (num <= temp);

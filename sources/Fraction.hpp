@@ -17,12 +17,12 @@ public:
     // constructor
     Fraction();
     Fraction(const int& num_erator,const int& denominator);
-    Fraction(float num);
+    Fraction(const float& num);
     Fraction(double num);
 
     // get & set
     int getNumerator() const;
-    int getDenominator()const;
+    int getDenominator() const;
 
     // All operators should work on both sides on fractions and floats type variables.
 
@@ -74,13 +74,13 @@ public:
 
     // The ++ and -- operator that adds (or substracts) 1 to the fraction. implement both pre and post fix.
 
-    // prefix
+    // prefix ++i
     Fraction &operator--()
     {
         _numerator -= _denominator;
         return *this;
     }
-    // postfix
+    // postfix i++
     Fraction operator--(int)
     {
         Fraction tmp(*this);
