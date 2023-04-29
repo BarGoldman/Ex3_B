@@ -48,12 +48,12 @@ int main()
     cout << "f.getNumerator() == 2)  " << (h.getNumerator() == 2327) << endl;     // 4.654
     cout << "(f.getDenominator() == 1)  " << (h.getDenominator() == 500) << endl; // 4.654
 
-    Fraction d(2,5);
-    float e = 0.2001; // 1/5
-    Fraction f = e - d; // 4/5 / 2/5 = 4/5 * 5/2 = 20 / 10 = 2/1
-    cout << "f " << (f) << endl;
-    cout << "f.getNumerator() == 2)  " << (f.getNumerator() == -1) << endl;     // 4.654
-    cout << "(f.getDenominator() == 1)  " << (f.getDenominator() == 5) << endl; // 4.654
+    Fraction d(1, 5);
+    float e = 0.4; // Will be converted to 2/5
+    Fraction g = e + d;
+    cout << "f " << (g) << endl;
+    cout << "f.getNumerator() == 2)  " << (g.getNumerator() == 2) << endl;     // 4.654
+    cout << "(f.getDenominator() == 1)  " << (g.getDenominator() == 5) << endl; // 4.654
 
     Fraction aa(1, 3);
     cout << "aa:  " << (aa + 4.321) << endl; // 4.654
