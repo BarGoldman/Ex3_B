@@ -1,7 +1,5 @@
 #include "Fraction.hpp"
 #include <cmath>
-#include <algorithm>
-#include <climits>
 
 namespace ariel
 {
@@ -15,39 +13,6 @@ int gcd(int num1, int num2)
         return num1;
     }
     return gcd(num2, num1 % num2);
-}
-
-void Fraction::helper(int &flag){
-    int ans = gcd(_numerator , _denominator);
-    _numerator = _numerator / ans;
-    _denominator = _denominator / ans;
-    
-    // if the "-" is on the _denominator over to the _numerator
-    if (_denominator < 0)
-    {
-        _numerator = _numerator * (-1);
-        _denominator = _denominator * (-1);
-    }
-
-
-    // //From this part of the assignment I handle cases where the denominator is greater than 1000
-    // //, for the purpose of writing the solution I consulted the main group on how to solve the problem.
-    // if (_denominator > 1000 && flag == 1)
-    // {
-    //     int temp_d = _denominator / 1000;
-    //     int temp_n = _numerator / temp_d;
-    //     temp_d = 1000;
-    //     int ans = gcd(temp_n, temp_d);
-    //     _numerator = temp_n / ans;
-    //     _denominator = temp_d / ans;
-
-    //     // if the "-" is on the _denominator over to the _numerator
-    //     if (_denominator < 0)
-    //     {
-    //         _numerator = _numerator * (-1);
-    //         _denominator = _denominator * (-1);
-    //     }
-    // }
 }
 
 
@@ -64,20 +29,25 @@ Fraction::Fraction(int num_erator, int denominator):_numerator(num_erator),_deno
     {
         throw std::invalid_argument("Divide by zero exception");
     }
-    int flag = 0;
-    if(denominator > 1000){
-        flag = 1;
+    int ans = gcd(_numerator , _denominator);
+    _numerator = _numerator / ans;
+    _denominator = _denominator / ans;
+    
+    // if the "-" is on the _denominator over to the _numerator
+    if (_denominator < 0)
+    {
+        _numerator = _numerator * (-1);
+        _denominator = _denominator * (-1);
     }
-    helper(flag);
 };
 
 Fraction::Fraction(float num)
 {
-    int numerator = num * 1000;
-    int denominator = 1000;
-    int ans = gcd(numerator, denominator);
-    _numerator = numerator / ans;
-    _denominator = denominator / ans;
+    _numerator = num * 1000;
+    _denominator = 1000;
+    int ans = gcd(_numerator, _denominator);
+    _numerator = _numerator / ans;
+    _denominator = _denominator / ans;
 
     // if the "-" is on the _denominator over to the _numerator
     if (_denominator < 0)
@@ -90,11 +60,11 @@ Fraction::Fraction(float num)
 // constructor for the test
 Fraction::Fraction(double num)
 {
-    int numerator = num * 1000;
-    int denominator = 1000;
-    int ans = gcd(numerator, denominator);
-    _numerator = numerator / ans;
-    _denominator = denominator / ans;
+    _numerator = num * 1000;
+    _denominator = 1000;
+    int ans = gcd(_numerator, _denominator);
+    _numerator = _numerator / ans;
+    _denominator = _denominator / ans;
 
     // if the "-" is on the _denominator over to the _numerator
     if (_denominator < 0)

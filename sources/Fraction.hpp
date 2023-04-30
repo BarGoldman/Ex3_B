@@ -20,9 +20,6 @@ public:
     Fraction(float num);
     Fraction(double num);
 
-    void helper(int &flag);
-
-
     // get & set
     int getNumerator() const;
     int getDenominator() const;
