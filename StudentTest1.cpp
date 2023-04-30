@@ -8,8 +8,6 @@
 using namespace ariel;
 using namespace std;
 
-
-
 TEST_CASE("Fraction object initialization & Getters return expected values") {
     Fraction a(1, 2);
 
@@ -97,7 +95,6 @@ TEST_CASE("Fraction division test") {
     CHECK(((g.getNumerator() == 1) && (g.getDenominator() == 2)));
     CHECK(__gcd(g.getNumerator(), g.getDenominator()) == 1);
 }
-
 
 TEST_CASE("Division by zero throws an exception") {
     Fraction a(1, 2);
@@ -253,4 +250,3 @@ TEST_CASE("Rounding of float numbers during arithmetic operations with Fractions
     c = a / b; // 2/1
     CHECK(((c.getNumerator() == 2) && (c.getDenominator() == 1)));
 }
-
