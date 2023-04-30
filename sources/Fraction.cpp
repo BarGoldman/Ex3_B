@@ -298,11 +298,19 @@ ostream &operator<<(ostream &output, const Fraction &other)
 istream &operator>>(istream &input, Fraction &other)
 {
     int new_numerator, new_denominator;
-    input >> new_numerator;
-    if (!(input >> new_denominator))
+    if (input.peek() == EOF)
     {
-        throw std::runtime_error("the input is one number Or not int num");
+        throw std::runtime_error("the input is EMPTY");
     }
+    input >> new_numerator;
+    if (input.peek() == EOF)
+    {
+        throw std::runtime_error("the input is one number");
+    }
+    if(input.peek() == ','){
+        input.ignore();
+    }
+    input >> new_denominator;
     if (new_denominator == 0)
     {
         throw std::runtime_error("Divide by zero exception");
