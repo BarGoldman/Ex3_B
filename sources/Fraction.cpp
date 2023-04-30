@@ -15,7 +15,6 @@ int gcd(int num1, int num2)
     return gcd(num2, num1 % num2);
 }
 
-
 // constructor
 Fraction::Fraction()
 {
@@ -23,16 +22,16 @@ Fraction::Fraction()
     _denominator = 1;
 }
 
-Fraction::Fraction(int num_erator, int denominator):_numerator(num_erator),_denominator(denominator)
+Fraction::Fraction(int num_erator, int denominator) : _numerator(num_erator), _denominator(denominator)
 {
     if (denominator == 0)
     {
         throw std::invalid_argument("Divide by zero exception");
     }
-    int ans = gcd(_numerator , _denominator);
+    int ans = gcd(_numerator, _denominator);
     _numerator = _numerator / ans;
     _denominator = _denominator / ans;
-    
+
     // if the "-" is on the _denominator over to the _numerator
     if (_denominator < 0)
     {
@@ -90,13 +89,13 @@ int Fraction::getDenominator() const
 // The + operator to add two fractions and return their sum as another fraction in reduced form.
 Fraction Fraction::operator+(const Fraction &other) const
 {
-    long long numeratorNew = (long long)(_numerator * other._denominator) + (long long)(_denominator * other._numerator);
+    long long numeratorNew = ((long long)_numerator * (long long)other._denominator) + ((long long)_denominator * (long long)other._numerator);
     long long denominatorNew = (long long)_denominator * (long long)other._denominator;
-    if (numeratorNew/denominatorNew > std::numeric_limits<int>::max() || numeratorNew/denominatorNew < std::numeric_limits<int>::min()) {
+    if ( numeratorNew > std::numeric_limits<int>::max() || numeratorNew < std::numeric_limits<int>::min() || denominatorNew > std::numeric_limits<int>::max() || denominatorNew < std::numeric_limits<int>::min())
+    {
         throw std::overflow_error("Multiplication resulted in integer overflow");
     }
     return Fraction((int)numeratorNew, (int)denominatorNew);
-    // return Fraction(numeratorNew, denominatorNew);
 }
 
 Fraction Fraction::operator+(float num) const
@@ -115,9 +114,13 @@ Fraction operator+(float num, const Fraction &other)
 // The - operator to subtract two fractions and return their difference as another fraction in reduced form.
 Fraction Fraction::operator-(const Fraction &other) const
 {
-    int numeratorNew = (_numerator * other._denominator) - (_denominator * other._numerator);
-    int denominatorNew = _denominator * other._denominator;
-    return Fraction(numeratorNew, denominatorNew);
+    long long numeratorNew = ((long long)_numerator * (long long)other._denominator) - ((long long)_denominator * (long long)other._numerator);
+    long long denominatorNew = (long long)_denominator * (long long)other._denominator;
+    if ( numeratorNew > std::numeric_limits<int>::max() || numeratorNew < std::numeric_limits<int>::min() || denominatorNew > std::numeric_limits<int>::max() || denominatorNew < std::numeric_limits<int>::min())
+    {
+        throw std::overflow_error("Multiplication resulted in integer overflow");
+    }
+    return Fraction((int)numeratorNew, (int)denominatorNew);
 }
 
 Fraction Fraction::operator-(float num) const
@@ -139,15 +142,11 @@ Fraction Fraction::operator*(const Fraction &other) const
 
     long long numeratorNew = (long long)_numerator * (long long)other._numerator;
     long long denominatorNew = (long long)_denominator * (long long)other._denominator;
-    if (numeratorNew/denominatorNew > std::numeric_limits<int>::max() || numeratorNew/denominatorNew < std::numeric_limits<int>::min()) {
+    if ( numeratorNew > std::numeric_limits<int>::max() || numeratorNew < std::numeric_limits<int>::min() || denominatorNew > std::numeric_limits<int>::max() || denominatorNew < std::numeric_limits<int>::min())
+    {
         throw std::overflow_error("Multiplication resulted in integer overflow");
     }
     return Fraction((int)numeratorNew, (int)denominatorNew);
-
-
-    // int numeratorNew = _numerator * other._numerator;
-    // int denominatorNew = _denominator * other._denominator;
-    // return Fraction(numeratorNew, denominatorNew);
 }
 
 Fraction Fraction::operator*(float num) const
@@ -170,9 +169,13 @@ Fraction Fraction::operator/(const Fraction &other) const
     {
         throw std::runtime_error("Divide by zero exception");
     }
-    int numeratorNew = _numerator * other._denominator;
-    int denominatorNem = _denominator * other._numerator;
-    return Fraction(numeratorNew, denominatorNem);
+    long long numeratorNew = (long long)_numerator * (long long)other._denominator;
+    long long denominatorNew = (long long)_denominator * (long long)other._numerator;
+    if ( numeratorNew > std::numeric_limits<int>::max() || numeratorNew < std::numeric_limits<int>::min() || denominatorNew > std::numeric_limits<int>::max() || denominatorNew < std::numeric_limits<int>::min())
+    {
+        throw std::overflow_error("Multiplication resulted in integer overflow");
+    }
+    return Fraction((int)numeratorNew, (int)denominatorNew);
 }
 Fraction Fraction::operator/(float num) const
 {
@@ -195,9 +198,9 @@ Fraction operator/(float num, const Fraction &other)
 
 // The == operator to compare two fractions for equality and return true or false.
 bool Fraction::operator==(const Fraction &other) const
-{ 
-    int a =  ((float) _numerator / _denominator ) * 1000;
-    int b =  ((float) other._numerator / other._denominator ) * 1000;   
+{
+    int a = ((float)_numerator / _denominator) * 1000;
+    int b = ((float)other._numerator / other._denominator) * 1000;
     return (a == b);
 }
 bool Fraction::operator==(float num) const
@@ -215,8 +218,8 @@ bool operator==(float num, const Fraction &other)
 //  >
 bool Fraction::operator>(const Fraction &other) const
 {
-    int a =  ((float) _numerator / _denominator ) * 1000;
-    int b =  ((float) other._numerator / other._denominator ) * 1000;   
+    int a = ((float)_numerator / _denominator) * 1000;
+    int b = ((float)other._numerator / other._denominator) * 1000;
     return (a > b);
 }
 
@@ -235,8 +238,8 @@ bool operator>(float num, const Fraction &other)
 // <
 bool Fraction::operator<(const Fraction &other) const
 {
-    int a =  ((float) _numerator / _denominator ) * 1000;
-    int b =  ((float) other._numerator / other._denominator ) * 1000;   
+    int a = ((float)_numerator / _denominator) * 1000;
+    int b = ((float)other._numerator / other._denominator) * 1000;
     return (a < b);
 }
 
@@ -255,37 +258,37 @@ bool operator<(float num, const Fraction &other)
 // >=
 bool Fraction::operator>=(const Fraction &other) const
 {
-    return(other == *this || *this > other);
+    return (other == *this || *this > other);
 }
 
 bool Fraction::operator>=(float num) const
 {
     Fraction temp(num);
-    return(*this >= temp);
+    return (*this >= temp);
 }
 
 bool operator>=(float num, const Fraction &other)
 {
     Fraction temp(num);
-    return(temp >= other);
+    return (temp >= other);
 }
 
 // <=
 bool Fraction::operator<=(const Fraction &other) const
 {
-    return(other == *this || *this < other);
+    return (other == *this || *this < other);
 }
 
 bool Fraction::operator<=(float num) const
 {
     Fraction temp(num);
-    return(*this <= temp);
+    return (*this <= temp);
 }
 
 bool operator<=(float num, const Fraction &other)
 {
     Fraction temp(num);
-    return(temp <= other);
+    return (temp <= other);
 }
 
 // The << operator to print a fraction to an output stream in the format “numerator/denominator”.
@@ -307,7 +310,8 @@ istream &operator>>(istream &input, Fraction &other)
     {
         throw std::runtime_error("the input is one number");
     }
-    if(input.peek() == ','){
+    if (input.peek() == ',' || input.peek() == '/')
+    {
         input.ignore();
     }
     input >> new_denominator;
